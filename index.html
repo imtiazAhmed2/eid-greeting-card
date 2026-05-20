@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Eid Greeting Card</title>
+
+<style>
+
+body{
+margin:0;
+padding:20px;
+background:#f4f4f4;
+font-family:Arial;
+text-align:center;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+}
+
+canvas{
+width:100%;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+input,select,button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border-radius:10px;
+border:none;
+font-size:18px;
+}
+
+button{
+background:#009fda;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#0077a3;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<canvas id="eidCanvas" width="1240" height="1240"></canvas>
+
+<select id="language">
+<option value="en">English</option>
+<option value="ar">العربية</option>
+</select>
+
+<input type="text" id="userName" placeholder="Enter your name / اكتب اسمك">
+
+<button onclick="generateCard()">Generate Greeting</button>
+
+<button onclick="downloadCard()">Download Card</button>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("eidCanvas");
+const ctx = canvas.getContext("2d");
+
+const bg = new Image();
+bg.src = "eid-card.png";
+
+bg.onload = function(){
+ctx.drawImage(bg,0,0,canvas.width,canvas.height);
+};
+
+function generateCard(){
+
+const name = document.getElementById("userName").value;
+const lang = document.getElementById("language").value;
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.drawImage(bg,0,0,canvas.width,canvas.height);
+
+ctx.fillStyle = "white";
+ctx.textAlign = "center";
+ctx.font = "bold 46px Arial";
+
+if(lang === "ar"){
+ctx.direction = "rtl";
+ctx.fillText("من: " + name, canvas.width/2, 580);
+}else{
+ctx.direction = "ltr";
+ctx.fillText("From: " + name, canvas.width/2, 580);
+}
+
+}
+
+function downloadCard(){
+
+const link = document.createElement("a");
+
+link.download = "eid-card.png";
+
+link.href = canvas.toDataURL();
+
+link.click();
+
+}
+
+</script>
+
+</body>
+</html>
