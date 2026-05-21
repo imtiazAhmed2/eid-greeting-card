@@ -6,7 +6,12 @@
 
 <title>Eid Greeting Card</title>
 
-<style>
+  <style>
+
+@font-face {
+     font-family: 'DINNextLTArabic';
+    src: url('ArbFONTS-DINNextLTArabic-Regular-3.ttf') format('truetype');
+}
 
 body{
 margin:0;
@@ -46,7 +51,7 @@ button:hover{
 background:#0077a3;
 }
 
-</style>
+
 </head>
 
 <body>
@@ -75,6 +80,9 @@ const ctx = canvas.getContext("2d");
 
 const bg = new Image();
 bg.src = "eid-card.png";
+document.fonts.ready.then(() => {
+  generateCard();
+});
 
 bg.onload = function(){
 ctx.drawImage(bg,0,0,canvas.width,canvas.height);
@@ -91,7 +99,7 @@ ctx.drawImage(bg,0,0,canvas.width,canvas.height);
 
 ctx.fillStyle = "white";
 ctx.textAlign = "center";
-ctx.font = "bold 46px Arial";
+ctx.font = "bold 46px DINNextLTArabic";
 
 if(lang === "ar"){
 ctx.direction = "rtl";
