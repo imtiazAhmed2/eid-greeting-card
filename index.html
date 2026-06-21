@@ -79,7 +79,7 @@ const canvas = document.getElementById("eidCanvas");
 const ctx = canvas.getContext("2d");
 
 const bg = new Image();
-bg.src = "eid-card.png";
+bg.src = "ART.png";
 document.fonts.ready.then(() => {
   generateCard();
 });
@@ -115,7 +115,7 @@ function downloadCard(){
 
 const link = document.createElement("a");
 
-link.download = "eid-card.png";
+link.download = "ART.png";
 
 link.href = canvas.toDataURL();
 
