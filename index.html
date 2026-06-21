@@ -98,15 +98,16 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.drawImage(bg,0,0,canvas.width,canvas.height);
 
 ctx.fillStyle = "white";
-ctx.textAlign = "right";
 ctx.font = "bold 46px DINNextLTArabic";
 
-if(lang === "ar"){
-ctx.direction = "rtl";
-ctx.fillText(name, canvas.width/2, 580);
-}else{
-ctx.direction = "ltr";
-ctx.fillText(name, canvas.width/2, 580);
+if (lang === "ar") {
+    ctx.direction = "rtl";
+    ctx.textAlign = "right";
+    ctx.fillText(name, canvas.width - 80, 580); // right padding
+} else {
+    ctx.direction = "ltr";
+    ctx.textAlign = "left";
+    ctx.fillText(name, 80, 580); // left padding
 }
 
 }
